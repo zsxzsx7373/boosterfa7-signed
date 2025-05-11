@@ -1,0 +1,20 @@
+workflows:
+  android-build:
+    name: BoosterFA7 APK Release
+    max_build_duration: 15
+    environment:
+      android_signing:
+        - boosterfa7_release_keystore
+      vars:
+        JAVA_VERSION: 11
+        CM_KEY_ALIAS: boosterfa7
+        CM_KEYSTORE_PASSWORD: boosterpass123
+        CM_KEY_PASSWORD: boosterpass123
+    scripts:
+      - ./gradlew assembleRelease
+    artifacts:
+      - app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - npo.fa@outlook.com
